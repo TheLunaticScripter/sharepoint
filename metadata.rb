@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'All Rights Reserved'
 description 'Installs/Configures sharepoint'
 long_description 'Installs/Configures sharepoint'
-version '0.1.7'
+version '0.2.5'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 depends 'powershell'
