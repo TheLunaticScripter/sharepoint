@@ -1,8 +1,9 @@
 property :name, kind_of: String, name_property: true
-property :new_resource.install_path, kind_of: String, required: true
+property :install_path, kind_of: String, required: true
 property :sxs_source, kind_of: String, required: true
 property :pre_req_timeout, kind_of: Integer, default: 1500
 property :sp_license_key, kind_of: String
+property :install_module, kind_of: [TrueClass, FalseClass]
 
 default_action :install
 
@@ -51,7 +52,7 @@ action :install do
   dsc_resource 'InstallPrereqs' do
     resource :SPInstallPrereqs
     property :Ensure, 'Present'
-    property :SXSpath, sxs_source
+    property :SXSpath, new_resource.sxs_source
     property :InstallerPath, "#{new_resource.install_path}\\prerequisiteinstaller.exe"
     property :SQLNCli, "#{new_resource.install_path}\\prerequisiteinstallerfiles\\sqlncli.msi"
     property :PowerShell, "#{new_resource.install_path}\\prerequisiteinstallerfiles\\Windows6.1-KB2506143-x64.msu"
