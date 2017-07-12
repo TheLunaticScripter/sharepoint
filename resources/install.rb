@@ -2,6 +2,7 @@ property :name, kind_of: String, name_property: true
 property :install_path, kind_of: String, required: true
 property :sxs_source, kind_of: String, required: true
 property :pre_req_timeout, kind_of: Integer, default: 1500
+property :install_timeout, kind_of: Integar, default: 600
 property :sp_license_key, kind_of: String
 property :install_module, kind_of: [TrueClass, FalseClass], default: true
 
@@ -76,5 +77,6 @@ action :install do
     property :Ensure, 'Present'
     property :BinaryDir, new_resource.install_path
     property :ProductKey, new_resource.sp_license_key
+    timeout new_resource.install_timeout
   end
 end
