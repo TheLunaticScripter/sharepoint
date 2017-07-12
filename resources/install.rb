@@ -3,7 +3,7 @@ property :install_path, kind_of: String, required: true
 property :sxs_source, kind_of: String, required: true
 property :pre_req_timeout, kind_of: Integer, default: 1500
 property :sp_license_key, kind_of: String
-property :install_module, kind_of: [TrueClass, FalseClass]
+property :install_module, kind_of: [TrueClass, FalseClass], default: true
 
 default_action :install
 
@@ -16,17 +16,19 @@ def whyrun_supported?
 end
 
 action :install do
-  include_recipe 'powershell::powershell5'
+  unless new_resource.install_module == false
+    include_recipe 'powershell::powershell5'
 
-  powershell_script 'Install NuGet Package Provider' do
-    code 'Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force'
-    guard_interpreter :powershell_script
-    not_if '(Get-PackageProvider -Name NuGet) -ne $null'
-  end
-  powershell_script 'Install SharePointDSC Module' do
-    code 'Install-Module SharePointDSC -Confirm:$true'
-    guard_interpreter :powershell_script
-    not_if ::File.exist?('C:\\Program Files\\WindowsPowerShell\\Modules\\SharePointDSC').to_s
+    powershell_script 'Install NuGet Package Provider' do
+      code 'Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force'
+      guard_interpreter :powershell_script
+      not_if '(Get-PackageProvider -Name NuGet) -ne $null'
+    end
+    powershell_script 'Install SharePointDSC Module' do
+      code 'Install-Module SharePointDSC -Confirm:$true'
+      guard_interpreter :powershell_script
+      not_if ::File.exist?('C:\\Program Files\\WindowsPowerShell\\Modules\\SharePointDSC').to_s
+    end
   end
 
   # Set up LCM
