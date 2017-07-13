@@ -1,6 +1,6 @@
 name 'sharepoint'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+maintainer 'John Snow'
+maintainer_email 'thelunaticscripter@outlook.com'
 license 'All Rights Reserved'
 description 'Installs/Configures sharepoint'
 long_description 'Installs/Configures sharepoint'
