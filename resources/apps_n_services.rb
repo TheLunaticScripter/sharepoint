@@ -4,7 +4,7 @@ property :setup_pswd, kind_of: String, required: true
 property :svc_pool_acct, kind_of: String, required: true
 property :svc_pool_pswd, kind_of: String, required: true
 property :log_path, kind_of: String, default: 'C:\\SPLogs'
-property :db_name, kind_of: String, default: "#{new_resource.name}_db"
+property :db_name, kind_of: String
 property :usage_log_dir, kind_of: String, default: 'C:\\UsageLogs'
 property :dist_cache_sizemb, kind_of: Integer, default: 1024
 property :dist_cache_firewall_rule, kind_of: [TrueClass, FalseClass], default: false
@@ -20,7 +20,7 @@ property :farm_pswd, kind_of: String, required: true
 property :audit_enable, kind_of: [TrueClass, FalseClass], default: true
 property :audit_log_size, kind_of: Integer, default: 30
 
-default_ation :create_app
+default_action :create_app
 
 def load_current_resource
   @current_resource = Chef::Resource::SharepointAppsNServices.new(@new_resource.name)
