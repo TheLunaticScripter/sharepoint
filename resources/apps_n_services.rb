@@ -170,6 +170,8 @@ action :create_app do
       property :MaximumConversionTime, 300
       property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
     end
+  else
+    raise "The SharePoint App that you are trying to install, #{new_resource.name} is currently not supported."
   end
 end
 
