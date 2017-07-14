@@ -7,6 +7,7 @@ property :svc_pool_acct, kind_of: String, required: true
 property :svc_pool_pswd, kind_of: String, required: true
 property :log_path, kind_of: String, default: 'C:\\SPLogs'
 property :db_name, kind_of: String
+property :sql_server, kind_of: String
 property :usage_log_dir, kind_of: String, default: 'C:\\UsageLogs'
 property :dist_cache_sizemb, kind_of: Integer, default: 1024
 property :dist_cache_firewall_rule, kind_of: [TrueClass, FalseClass], default: false
@@ -69,7 +70,7 @@ action :create_app do
     end
   when 'AppManagementServiceApp'
     dsc_resource 'AppManagementServiceApp' do
-      resource :SPAppManagmentServiceApp
+      resource :SPAppManagementServiceApp
       property :Ensure, 'Present'
       property :Name, 'App Management Service Application'
       property :ApplicationPool, new_resource.app_pool_name
@@ -83,6 +84,7 @@ action :create_app do
       property :Name, 'BCS Service Application'
       property :ApplicationPool, new_resource.app_pool_name
       property :DatabaseName, new_resource.db_name
+      property :DatabaseServer, new_resource.sql_server
       property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
     end
   when 'ExcelServiceApp'
