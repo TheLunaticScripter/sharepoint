@@ -1,3 +1,5 @@
+resource_name :sp_app_svc
+
 property :name, kind_of: String, name_property: true
 property :setup_acct, kind_of: String, required: true
 property :setup_pswd, kind_of: String, required: true
