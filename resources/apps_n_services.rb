@@ -80,6 +80,7 @@ action :create_app do
     dsc_resource 'BCSServiceApp' do
       resource :SPBCSServiceApp
       property :Ensure, 'Present'
+      property :Name, 'BCS Service Application'
       property :ApplicationPool, new_resource.app_pool_name
       property :DatabaseName, new_resource.db_name
       property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
@@ -90,6 +91,7 @@ action :create_app do
       property :Ensure, 'Present'
       property :Name, 'Excel Services Service Application'
       property :ApplicationPool, new_resource.app_pool_name
+      property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
     end
   when 'ManagedMetaDataServiceApp'
     dsc_resource 'ManagedMetaDataServiceApp' do
@@ -133,6 +135,7 @@ action :create_app do
     dsc_resource 'UserProfileServiceApp' do
       resource :SPUserProfileServiceApp
       property :Ensure, 'Present'
+      property :Name, 'User Profile Service Application'
       property :ApplicationPool, new_resource.app_pool_name
       property :MySiteHostLocation, new_resource.my_site_url
       property :ProfileDBName, new_resource.profile_db_name
