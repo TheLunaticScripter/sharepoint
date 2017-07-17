@@ -3,8 +3,8 @@ resource_name :sp_app_svc
 property :name, kind_of: String, name_property: true
 property :setup_acct, kind_of: String, required: true
 property :setup_pswd, kind_of: String, required: true
-property :svc_pool_acct, kind_of: String, required: true
-property :svc_pool_pswd, kind_of: String, required: true
+property :svc_pool_acct, kind_of: String
+property :svc_pool_pswd, kind_of: String
 property :log_path, kind_of: String, default: 'C:\\SPLogs'
 property :db_name, kind_of: String
 property :sql_server, kind_of: String
@@ -18,8 +18,8 @@ property :profile_db_name, kind_of: String
 property :social_db_name, kind_of: String
 property :sync_db_name, kind_of: String
 property :enable_netbios, kind_of: [TrueClass, FalseClass], default: false
-property :farm_acct, kind_of: String, required: true
-property :farm_pswd, kind_of: String, required: true
+property :farm_acct, kind_of: String
+property :farm_pswd, kind_of: String
 property :audit_enable, kind_of: [TrueClass, FalseClass], default: true
 property :audit_log_size, kind_of: Integer, default: 30
 
