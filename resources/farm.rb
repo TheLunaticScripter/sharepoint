@@ -2,8 +2,8 @@ property :name, kind_of: String, name_property: true
 property :sql_fqdn, kind_of: String, required: true
 property :configdb, kind_of: String, required: true, default: 'SP_Config'
 property :passphrase, kind_of: String, required: true
-property :farm_acct, kind_of: String, required: true
-property :farm_pswd, kind_of: String, required: true
+property :farm_acct, kind_of: String
+property :farm_pswd, kind_of: String
 property :setup_acct, kind_of: String, required: true
 property :setup_pswd, kind_of: String, required: true
 property :admin_db, kind_of: String, default: 'SP_Admin'
@@ -71,5 +71,7 @@ action :join do
     property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
     property :AdminContentDatabaseName, new_resource.admin_db if new_resource.run_central_admin
     property :RunCentralAdmin, new_resource.run_central_admin
+    property :CentralAdministrationPort, new_resource.central_admin_port if new_resource.run_central_admin
+    property :CentralAdministrationAuth, new_resource.central_admin_auth if new_resource.run_central_admin
   end
 end
