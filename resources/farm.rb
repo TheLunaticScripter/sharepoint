@@ -11,6 +11,7 @@ property :run_central_admin, kind_of: [TrueClass, FalseClass], default: true
 property :central_admin_port, kind_of: Integer, default: 5000
 property :central_admin_auth, kind_of: String, default: 'NTLM'
 property :log_path, kind_of: String, default: 'C:\\SPLogs'
+property :server_role, kind_of: String
 
 default_action :create
 
@@ -35,6 +36,7 @@ action :create do
     property :RunCentralAdmin, new_resource.run_central_admin
     property :CentralAdministrationPort, new_resource.central_admin_port if new_resource.run_central_admin
     property :CentralAdministrationAuth, new_resource.central_admin_auth if new_resource.run_central_admin
+    property :ServerRole, new_resource.server_role if new_resource.server_role
     timeout 1500
   end
   dsc_resource 'ApplyDiagnosticLogSettings' do
@@ -73,5 +75,6 @@ action :join do
     property :RunCentralAdmin, new_resource.run_central_admin
     property :CentralAdministrationPort, new_resource.central_admin_port if new_resource.run_central_admin
     property :CentralAdministrationAuth, new_resource.central_admin_auth if new_resource.run_central_admin
+    property :ServerRole, new_resource.server_role if new_resource.server_role
   end
 end

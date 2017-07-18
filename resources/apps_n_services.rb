@@ -216,5 +216,28 @@ action :create_svc do
       property :Name, 'Managed Metadata Web Service'
       property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
     end
+  when 'ClaimsToWindowsTokenServiceInstance'
+    dsc_resource 'ClaimsToWindowsTokenServiceInstance' do
+      resource :SPServiceInstance
+      property :Ensure, 'Present'
+      property :Name, 'Claims to Windows Token Service'
+      property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
+    end
+  when 'SecuredStoreServiceInstance'
+    dsc_resource 'SecuredStoreServiceInstance' do
+      resource :SPServiceInstance
+      property :Ensure, 'Present'
+      property :Name, 'Secure Store Service'
+      property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
+    end
+  when 'SearchServiceInstance'
+    dsc_resource 'SearchServiceInstance' do
+      resource :SPServiceInstance
+      property :Ensure, 'Present'
+      property :Name, 'SharePoint Server Search'
+      property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
+    end
+  else
+    raise "The service your are requesting to start #{new_resource.name} is not currently supported."
   end
 end

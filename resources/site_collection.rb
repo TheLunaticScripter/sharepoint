@@ -5,6 +5,7 @@ property :url, kind_of: String, required: true
 property :owner, kind_of: String, required: true
 property :host_web_app, kind_of: String
 property :template, kind_of: String, default: 'STS#0'
+property :db_name, kind_of: String
 
 default_action :create
 
@@ -24,6 +25,7 @@ action :create do
     property :HostHeaderWebApplication, new_resource.host_web_app
     property :Name, new_resource.name
     property :Template, new_resource.template
+    property :ContentDatabase, new_resource.db_name if new_resource.db_name
     property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
   end
 end
