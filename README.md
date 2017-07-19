@@ -82,6 +82,8 @@ Create or Join a Sharepoint Farm
 - 'central_admin_port' - Central admin port default is 5000
 - 'central_admin_auth' - Authentication method for central admin, NTLM, Claims, etc. default is NTLM
 - 'log_path' - Path to directory to store SharePoint Logs default is C:\SPLogs
+- 'server_role' - SharePoint Role the server will be
+   - Note: Available options are "Application", "ApplicationWithSearch", "Custom", "DistributedCache", "Search", "SingleServer", "SingleServerFarm", "WebFrontEnd", "WebFrontEndWithDistributedCache"
 
 #### Examples
 Create a Farm with all the defaults
@@ -108,3 +110,38 @@ sharepoint_farm 'Join the Farm' do
   run_central_admin false
 end
 ```
+
+### sharepoint_web_app
+Creates, Configures, or updates a Web Application
+
+#### Actions
+- 'create' - Create a Web Application
+- 'add_extension' - An an extension to an existing Web application
+- 'add_alt_url' - Adds an alternate url for the Web Application
+- 'create_app_catalog' - Creates an App Catalog
+- 'create_cache_accts' - Associates the Super User and Super Reader accounts for the Web App cacheing
+
+#### Properties
+- 'web_app_acct' - The web app account - If this account is not already a managed account the resource will make it a managed account
+- 'web_app_pswd' - Password for the web app accaount
+- 'setup_acct' - Account used to run the DSC Resources
+- 'setup_pswd' - Password for the setup account
+- 'app_pool' - Name of the Application Pool
+- 'farm_acct' - The Farm Account username
+   - Note: The app catalog requires the farm account instead of the setup account to create properly
+- 'farm_pswd' - Password to the Farm account
+- 'db_name' - Name of the Content Database
+- 'auth_method' - Authentication method for the Web Applicaiton vaild options are NTLM, Kerberos or Claims. The default is NTLM
+- 'auth_provider' - Authentication provieder used for claims based Authentication
+- 'url' - Url for the Web App or App Catalog
+- 'new_url' - New Url for the Web app when extending the Web App or adding an Alternate Url
+- 'port' - Port the Web App will be on default is 80
+   - Note: This needs to be a String not an Integer
+- 'allow_anonymous' - Boolean wheather to allow anonymous access default it false
+- 'zone' - Zone for the alternate url or web app extension, the default is Intranet
+- 'super_user' - User name for the super user when creating the cache accounts
+   - Note: The Super User and Super Reader accounts need to be different
+- 'super_reader' - User name for the super reader user when creating the cache accounts
+
+#### Examples
+
