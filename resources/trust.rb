@@ -30,7 +30,7 @@ action :create_issuer do
     property :Realm, new_resource.realm
     property :SignInUrl, new_resource.sign_in_url
     property :IdentifierClaim, new_resource.identifier_claim
-    property :ClaimsMapping, new_resource.claims_mapping
+    property :ClaimsMapping, cim_instance_array_helper(new_resource.claims_mapping)
     property :SigningCertificationThumbPrint, new_resource.cert_thumb_print if new_resource.cert_thumb_print
     property :SigningCertificateFilePath, new_resource.cert_path if new_resource.cert_path
     property :ClaimProviderName, new_resource.provider_name

@@ -4,10 +4,11 @@ maintainer_email 'thelunaticscripter@outlook.com'
 license 'All Rights Reserved'
 description 'Installs/Configures sharepoint'
 long_description 'Installs/Configures sharepoint'
-version '1.5.0'
+version '2.0.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 depends 'powershell'
+depends 'dsc_contrib', '>= 0.6.0'
 
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when
