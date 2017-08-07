@@ -26,7 +26,7 @@ action :create_issuer do
     resource :SPTrustedIdentityTokenIssuer
     property :Ensure, 'Present'
     property :Name, new_resource.name
-    property :Description, new_resource.description
+    property :Description, new_resource.desc
     property :Realm, new_resource.realm
     property :SignInUrl, new_resource.sign_in_url
     property :IdentifierClaim, new_resource.identifier_claim
