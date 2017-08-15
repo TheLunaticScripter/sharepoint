@@ -12,6 +12,7 @@ property :auth_provider, kind_of: String
 property :url, kind_of: String, required: true
 property :new_url, kind_of: String
 property :port, kind_of: String, default: '80'
+property :path, kind_of: String
 property :allow_anonymous, kind_of: [TrueClass, FalseClass], default: false
 property :zone, kind_of: String, default: 'Intranet'
 property :super_user, kind_of: String
@@ -63,6 +64,7 @@ action :add_extension do
     property :AuthenticationMethod, new_resource.auth_method
     property :AuthenticationProvider, new_resource.auth_provider if new_resource.auth_method == 'Claims'
     property :Port, new_resource.port
+    property :Path, new_resource.path if new_resource.path
     property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
   end
 end
