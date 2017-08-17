@@ -69,7 +69,7 @@ end
 
 action :add_alt_url do
   dsc_resource 'AddAlternateUrl' do
-    resource :SPAlteranteUrl
+    resource :SPAlternateUrl
     property :Ensure, 'Present'
     property :Zone, new_resource.zone
     property :WebAppUrl, new_resource.url
