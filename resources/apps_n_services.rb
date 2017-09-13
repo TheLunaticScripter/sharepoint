@@ -22,6 +22,7 @@ property :farm_acct, kind_of: String
 property :farm_pswd, kind_of: String
 property :audit_enable, kind_of: [TrueClass, FalseClass], default: true
 property :audit_log_size, kind_of: Integer, default: 30
+property :dsc_timeout, kinde_of: Integar, default: 600
 
 default_action :create_app
 
@@ -201,6 +202,7 @@ action :create_svc do
       property :PsDscRunAsCredential, ps_credential(new_resource.setup_acct, new_resource.setup_pswd)
       property :CreateFirewallRules, new_resource.dist_cache_firewall_rule
       property :ServerProvisionOrder, new_resource.cache_provision_order if new_resource.cache_provision_order
+      timeout new_resource.dsc_timeout
     end
   when 'BCSServiceInstance'
     dsc_resource 'BCSServiceInstance' do
