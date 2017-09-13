@@ -22,7 +22,7 @@ property :farm_acct, kind_of: String
 property :farm_pswd, kind_of: String
 property :audit_enable, kind_of: [TrueClass, FalseClass], default: true
 property :audit_log_size, kind_of: Integer, default: 30
-property :dsc_timeout, kinde_of: Integar, default: 600
+property :dsc_timeout, kinde_of: Integer, default: 600
 
 default_action :create_app
 
